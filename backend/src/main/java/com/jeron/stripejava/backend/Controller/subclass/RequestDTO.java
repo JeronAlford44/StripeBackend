@@ -1,4 +1,4 @@
-package com.jeron.stripejava.backend;
+package com.jeron.stripejava.backend.Controller.subclass;
 
 import com.stripe.model.Product;
 
