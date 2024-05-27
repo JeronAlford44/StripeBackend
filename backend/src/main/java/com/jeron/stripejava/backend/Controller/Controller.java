@@ -1,7 +1,7 @@
 package com.jeron.stripejava.backend.Controller;
 
 import com.jeron.stripejava.backend.Controller.subclass.PaymentIntentHandler;
-import com.jeron.stripejava.backend.Controller.subclass.RequestDTO;
+import com.jeron.stripejava.backend.Controller.subclass.PaymentRequestDTO;
 import com.jeron.stripejava.backend.Stripe.StartCheckoutSession;
 import com.jeron.stripejava.backend.Stripe.subclass.CheckoutRequestDTO;
 import com.stripe.Stripe;
@@ -27,22 +27,16 @@ import com.stripe.param.PaymentIntentCreateParams;
 @RestController
 @CrossOrigin
 public class Controller {
+    
+    public static void main(String[] args) {
+        String STRIPE_API_KEY = "sk_test_51P9sC2KLCmwYX1xyGmesr1XPN1NsNHi9w8W3ViwTYP5IduPpB4ndtmyEgEApY1B36kW3LzKNV3S8xfFNWrHNZHYG00UzyQVOMw";
 
-    String STRIPE_API_KEY = "sk_test_51P9sC2KLCmwYX1xyGmesr1XPN1NsNHi9w8W3ViwTYP5IduPpB4ndtmyEgEApY1B36kW3LzKNV3S8xfFNWrHNZHYG00UzyQVOMw";
-
-    @PostMapping("/checkout/hosted")
-    // Body of POST Request will be of type RequestDTO -> {Product[] items; String
-    // customerName;String customerEmail;}
-    public String hostedCheckout(@RequestBody RequestDTO requestBody) throws StripeException {
-        System.out.println(STRIPE_API_KEY);
-        System.out.println(requestBody.getItems());
-        return "";
+        Stripe.apiKey = STRIPE_API_KEY;
     }
 
-    RequestDTO test = new RequestDTO();
 
     @PostMapping("/checkout/payment_intent")
-    public String newPaymentIntent(@RequestBody RequestDTO requestBody) throws StripeException {
+    public String newPaymentIntent(@RequestBody PaymentRequestDTO requestBody) throws StripeException {
         System.out.println(requestBody);
         final PaymentIntentHandler paymentIntentHandler = new PaymentIntentHandler(requestBody);
         final String clientSecret = paymentIntentHandler.clientSecret;
@@ -51,9 +45,9 @@ public class Controller {
     }
 
     @PostMapping("/checkout/session")
-    public String newCheckoutSession(@RequestBody CheckoutRequestDTO requestBody) throws StripeException {
+    public StartCheckoutSession newCheckoutSession(@RequestBody CheckoutRequestDTO requestBody) throws StripeException {
         StartCheckoutSession checkoutSession = new StartCheckoutSession(requestBody);
-        return checkoutSession.sessionUrl;
+        return checkoutSession;
 
     }
 

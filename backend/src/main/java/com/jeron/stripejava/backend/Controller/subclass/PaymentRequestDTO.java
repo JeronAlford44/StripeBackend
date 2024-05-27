@@ -2,7 +2,7 @@ package com.jeron.stripejava.backend.Controller.subclass;
 
 import com.stripe.model.Product;
 
-public class RequestDTO {
+public class PaymentRequestDTO {
     Product[] items;
     String customerName;
     String customerEmail;

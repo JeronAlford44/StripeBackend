@@ -22,12 +22,12 @@ import com.stripe.param.PaymentIntentCreateParams;
 
 public class PaymentIntentHandler {
     public String clientSecret;
-    public PaymentIntentHandler(RequestDTO requestBody) throws StripeException{
+    public PaymentIntentHandler(PaymentRequestDTO requestBody) throws StripeException{
         this.clientSecret = InitializePaymentIntent(requestBody);
 
     }
     
-    private String InitializePaymentIntent(RequestDTO requestBody) throws StripeException {
+    private String InitializePaymentIntent(PaymentRequestDTO requestBody) throws StripeException {
 
         PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
                 .setAmount(Long.valueOf(requestBody.getTotal()))
