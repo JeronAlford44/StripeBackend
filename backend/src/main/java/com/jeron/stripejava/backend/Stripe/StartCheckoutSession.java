@@ -1,6 +1,6 @@
 package com.jeron.stripejava.backend.Stripe;
 
-import com.jeron.stripejava.backend.Controller.subclass.PaymentRequestDTO;
+
 import com.jeron.stripejava.backend.Stripe.subclass.CheckoutRequestDTO;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Price;
@@ -35,7 +35,7 @@ public class StartCheckoutSession {
     public StartCheckoutSession(CheckoutRequestDTO checkoutRequestDTO) throws StripeException {
 
        
-        String YOUR_DOMAIN = "http://localhost:4242";
+        String DOMAIN = "http://localhost:3000";
 
         // Create a list to hold line item parameters
         List<SessionCreateParams.LineItem> lineItems = new ArrayList<>();
@@ -53,8 +53,7 @@ public class StartCheckoutSession {
         // Build the session parameters with all line items
         SessionCreateParams params = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl(YOUR_DOMAIN + "?success=true")
-                .setCancelUrl(YOUR_DOMAIN + "?canceled=true")
+                .setSuccessUrl(DOMAIN + "/checkout_success")
                 .addAllLineItem(lineItems)
                 .build();
 

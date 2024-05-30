@@ -1,7 +1,5 @@
 package com.jeron.stripejava.backend.Controller;
 
-import com.jeron.stripejava.backend.Controller.subclass.PaymentIntentHandler;
-import com.jeron.stripejava.backend.Controller.subclass.PaymentRequestDTO;
 import com.jeron.stripejava.backend.Stripe.StartCheckoutSession;
 import com.jeron.stripejava.backend.Stripe.subclass.CheckoutRequestDTO;
 import com.stripe.Stripe;
@@ -35,14 +33,7 @@ public class Controller {
     }
 
 
-    @PostMapping("/checkout/payment_intent")
-    public String newPaymentIntent(@RequestBody PaymentRequestDTO requestBody) throws StripeException {
-        System.out.println(requestBody);
-        final PaymentIntentHandler paymentIntentHandler = new PaymentIntentHandler(requestBody);
-        final String clientSecret = paymentIntentHandler.clientSecret;
-        return clientSecret;
-
-    }
+    
 
     @PostMapping("/checkout/session")
     public StartCheckoutSession newCheckoutSession(@RequestBody CheckoutRequestDTO requestBody) throws StripeException {
