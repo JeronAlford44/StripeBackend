@@ -27,7 +27,7 @@ import com.stripe.param.PaymentIntentCreateParams;
 public class Controller {
     
     public static void main(String[] args) {
-        String STRIPE_API_KEY = "sk_test_51P9sC2KLCmwYX1xyGmesr1XPN1NsNHi9w8W3ViwTYP5IduPpB4ndtmyEgEApY1B36kW3LzKNV3S8xfFNWrHNZHYG00UzyQVOMw";
+        String STRIPE_API_KEY = "removed private key for now";
 
         Stripe.apiKey = STRIPE_API_KEY;
     }
