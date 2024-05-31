@@ -26,11 +26,7 @@ import com.stripe.param.PaymentIntentCreateParams;
 @CrossOrigin
 public class Controller {
     
-    public static void main(String[] args) {
-        String STRIPE_API_KEY = "removed private key for now";
-
-        Stripe.apiKey = STRIPE_API_KEY;
-    }
+    
 
 
     
